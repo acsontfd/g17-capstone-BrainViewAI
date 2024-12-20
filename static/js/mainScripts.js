@@ -1,4 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const userDropdownBtn = document.getElementById("user-dropdown-btn");
+  const userDropdownMenu = document.getElementById("user-dropdown-menu");
+  const logoutLink = document.getElementById("logout-link");
+  const dashboardLogoutButton = document.getElementById("logout");
+
+  // Toggle dropdown menu visibility
+  userDropdownBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent the click from propagating to the window
+    userDropdownMenu.classList.toggle("show");
+  });
+
+  // Close dropdown when clicking outside
+  window.addEventListener("click", () => {
+    userDropdownMenu.classList.remove("show");
+  });
+
+  // Logout functionality for dropdown link
+  logoutLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+  });
+
+  // Logout functionality for dashboard logout button
+  if (dashboardLogoutButton) {
+    dashboardLogoutButton.addEventListener("click", () => {
+      // Show confirmation dialog
+      const confirmation = confirm("Are you sure you want to log out?");
+      if (confirmation) {
+        // Clear user data from localStorage
+        localStorage.removeItem("user");
+
+        // Redirect to the login page
+        window.location.href = "login.html";
+      }
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   // Check authentication using session
   const checkAuth = async () => {
     try {
@@ -23,33 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   checkAuth();
-
-  // Update logout functionality
-  document.getElementById("logout-link").addEventListener("click", async () => {
-    try {
-      await fetch('/g17-capstone-BrainViewAI/logout.php');
-      window.location.href = "login.html";
-    } catch (error) {
-      console.error("Error logging out:", error);
-    }
-  });
-
-  // Dropdown menu toggle
-  const dropdownBtn = document.getElementById("user-dropdown-btn");
-  const dropdownMenu = document.getElementById("user-dropdown-menu");
-
-  // Toggle the dropdown menu visibility when user clicks on avatar or name
-  dropdownBtn.addEventListener("click", (e) => {
-    e.stopPropagation();  // Prevent the event from bubbling up to document
-    dropdownMenu.classList.toggle("show");
-  });
-
-  // Close dropdown menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!dropdownBtn.contains(e.target)) {
-      dropdownMenu.classList.remove("show");
-    }
-  });
 
   // Upload CT Scan functionality
   const uploadBtn = document.getElementById("upload-btn");
