@@ -2,7 +2,7 @@
 class Database {
     private $host = 'localhost';
     private $username = 'root';  // Replace with your MySQL username
-    private $password = '';      // Replace with your MySQL password 
+    private $password = 'kp123456';      // Replace with your MySQL password 
     private $dbname = 'user_auth';
     public $conn;
 

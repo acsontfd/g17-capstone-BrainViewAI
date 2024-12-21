@@ -1,6 +1,10 @@
 <?php
 header('Content-Type: application/json');
 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Prevent direct access
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode([
@@ -24,7 +28,7 @@ function sendResponse($success, $message = '', $error = '') {
 
 try {
     // Get and sanitize inputs
-    $userId = filter_input(INPUT_POST, 'userId', FILTER_SANITIZE_STRING);
+    $userId = filter_input(INPUT_POST, 'userId', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $password = $_POST['password'] ?? '';
     $confirmPassword = $_POST['confirmPassword'] ?? '';
 

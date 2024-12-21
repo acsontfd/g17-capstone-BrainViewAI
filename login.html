@@ -16,7 +16,7 @@
       <form id="login-form">
         <div class="form-group">
           <label for="user-id">User ID</label>
-          <input type="text" id="user-id" name="user-id" placeholder="Enter your User ID" required>
+          <input type="text" id="userId" name="userId" placeholder="Enter your User ID" required>
         </div>
         <div class="form-group">
           <label for="password">Your Password</label>
@@ -25,6 +25,7 @@
             <button type="button" class="toggle-password">👁️</button>
           </div>
         </div>
+        <div id="errorContainer" style="display: none; color: red;"></div>
         <button type="submit" class="btn-primary">LOGIN</button>
         <div class="links">
           <a href="/forgotPassword.html">Forgot Your Password?</a>
@@ -33,6 +34,6 @@
       </form>
     </div>
   </div>
-  <script src="static/js/authScripts.js"></script>
+  <script src="static/js/auth-script.js"></script>
 </body>
 </html>

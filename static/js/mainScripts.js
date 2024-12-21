@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Check authentication using session
   const checkAuth = async () => {
     try {
-      const response = await fetch('/g17-capstone-BrainViewAI/check-auth.php');
+      const response = await fetch('check-auth.php');
       const data = await response.json();
       
       if (!data.authenticated) {
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData();
         formData.append('image', file);
 
-        const response = await fetch('/g17-capstone-BrainViewAI/upload-image.php', {
+        const response = await fetch('upload-image.php', {
           method: 'POST',
           body: formData
         });
@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json();
         if (result.success) {
           analyzeBtn.disabled = false;
-          alert('Upload successful!');
         } else {
           alert('Upload failed: ' + (result.error || 'Unknown error'));
         }
@@ -155,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       const imageSource = imageElement.src;
-      const response = await fetch('/g17-capstone-BrainViewAI/analyze-scan.php', {
+      const response = await fetch('analyze-scan.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

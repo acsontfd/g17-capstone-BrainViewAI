@@ -165,11 +165,23 @@ body {
   .image-placeholder {
     border: 1px dashed #ccc;
     border-radius: 8px;
-    padding: 50px;
     color: #888;
     font-size: 14px;
     text-align: center;
-    height: 350px;
+    height: 350px; /* Keeps the placeholder height consistent */
+    display: flex; /* Flexbox for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow: hidden; /* Ensures the image doesn't overflow */
+    background-color: #f9f9f9; /* Optional: Adds a subtle background */
+  }
+  
+  /* Ensure uploaded image fits within the placeholder */
+  .uploaded-image {
+    max-width: 100%; /* Fit image within the width of the container */
+    max-height: 100%; /* Fit image within the height of the container */
+    object-fit: contain; /* Maintain aspect ratio and avoid distortion */
+    display: block; /* Makes the image a block element */
   }
   
   /* Footer */

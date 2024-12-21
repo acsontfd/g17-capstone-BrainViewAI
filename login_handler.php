@@ -2,6 +2,8 @@
 session_start();
 require_once 'db-connection.php';
 
+error_log("POST data: " . print_r($_POST, true));
+
 header('Content-Type: application/json');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
