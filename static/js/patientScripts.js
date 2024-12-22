@@ -1,9 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const user = JSON.parse(localStorage.getItem("user"));
+  
+  // Check if the user is authenticated
   if (!user) {
-    window.location.href = "login.html";
+    alert("User not authenticated. Redirecting to login page.");  // Show error in alert
+    window.location.href = "login.html";  // Redirect to login page if user is not authenticated
     return;
   }
+
+
+  // Continue with the page rendering only if the user is authenticated
   const userDropdownBtn = document.getElementById("user-dropdown-btn");
   const userDropdownMenu = document.getElementById("user-dropdown-menu");
   const logoutLink = document.getElementById("logout-link");
@@ -16,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Toggle dropdown menu visibility
   userDropdownBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // Prevent the click from propagating to the window
+    e.stopPropagation();
     userDropdownMenu.classList.toggle("show");
   });
 

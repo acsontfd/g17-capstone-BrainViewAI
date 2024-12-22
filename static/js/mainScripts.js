@@ -22,38 +22,46 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "login.html";
   });
 
-  // Logout functionality for dashboard logout button
-  if (dashboardLogoutButton) {
-    dashboardLogoutButton.addEventListener("click", () => {
-      // Show confirmation dialog
-      const confirmation = confirm("Are you sure you want to log out?");
-      if (confirmation) {
-        // Clear user data from localStorage
-        localStorage.removeItem("user");
+  // Logout functionality with confirmation
+  logoutLink.addEventListener("click", (e) => {
+    e.preventDefault(); // Prevent the default action (immediate redirection)
 
-        // Redirect to the login page
-        window.location.href = "login.html";
-      }
-    });
+    // Show a confirmation dialog
+    const isConfirmed = confirm("Are you sure you want to log out?");
+    if (isConfirmed) {
+      // If the user confirms, clear the session (or localStorage if needed)
+      localStorage.removeItem("user"); // Remove user from localStorage (if you're using it)
+      window.location.href = "login.html"; // Redirect to login page
+    }
+  });
+
+  // Add mask element to the body
+  const mask = document.createElement("div");
+  mask.className = "mask";
+  document.body.appendChild(mask);
+
+  // Function to show and hide the mask
+  function showMask() {
+    mask.classList.add("show");
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
+  function hideMask() {
+    mask.classList.remove("show");
+  }
+
   // Check authentication using session
   const checkAuth = async () => {
     try {
       const response = await fetch('check-auth.php');
       const data = await response.json();
-      
+
       if (!data.authenticated) {
         window.location.href = "login.html";
       } else {
-        // Update UI with user info
-        const userId = data.user_id; // Get the user_id from session
-        const nameParts = userId.split(" "); // Split in case it's a full name
+        const userId = data.user_id;
+        const nameParts = userId.split(" ");
         const initials = nameParts.map(part => part[0].toUpperCase()).join("");
-        
-        document.querySelector(".user-name").textContent = userId; // Show user_id instead of name
+        document.querySelector(".user-name").textContent = userId;
         document.querySelector(".user-avatar").textContent = initials;
       }
     } catch (error) {
@@ -64,33 +72,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   checkAuth();
 
-  // Upload CT Scan functionality
   const uploadBtn = document.getElementById("upload-btn");
   const uploadInput = document.getElementById("upload-input");
   const analyzeBtn = document.getElementById("analyze-btn");
   const imagePreview = document.getElementById("image-preview");
 
-  // Processing INPUT
   uploadBtn.addEventListener("click", () => {
-    uploadInput.click(); 
+    uploadInput.click();
   });
 
-  // Handle file upload
   uploadInput.addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Show loading state
       uploadBtn.disabled = true;
       uploadBtn.textContent = "Uploading...";
-      
-      // Show preview
+
       const reader = new FileReader();
-      reader.onload = function(event) {
+      reader.onload = function (event) {
         imagePreview.innerHTML = `<img src="${event.target.result}" alt="Uploaded CT Scan" class="uploaded-image">`;
       };
       reader.readAsDataURL(file);
 
-      // Upload to db
       try {
         const formData = new FormData();
         formData.append('image', file);
@@ -110,20 +112,16 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error('Upload error:', error);
         alert('Upload failed. Please try again.');
       } finally {
-        // Reset button state
         uploadBtn.disabled = false;
         uploadBtn.textContent = "Upload CT Scan";
       }
     }
   });
 
-  // Analyze button functionality
   analyzeBtn.addEventListener("click", async () => {
-    // Add analyzing class to button for pulse animation
     analyzeBtn.classList.add('analyzing');
     analyzeBtn.disabled = true;
 
-    // Show progress bar
     const progressContainer = document.createElement("div");
     progressContainer.className = "progress-container";
     progressContainer.innerHTML = `
@@ -133,12 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="analysis-text">Analyzing CT Scan...</div>
     `;
 
-    // Insert progress bar after image preview
-    const imagePreview = document.getElementById("image-preview");
     imagePreview.insertAdjacentElement('afterend', progressContainer);
     progressContainer.style.display = "block";
 
-    // Start progress animation
     setTimeout(() => {
       const progressBarFill = progressContainer.querySelector('.progress-bar-fill');
       progressBarFill.style.width = '100%';
@@ -150,7 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error('No image found to analyze');
       }
 
-      // Wait for progress bar animation
       await new Promise(resolve => setTimeout(resolve, 1500));
 
       const imageSource = imageElement.src;
@@ -170,39 +164,34 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(`Server returned ${response.status}: ${response.statusText}`);
       }
 
-      let result;
-      try {
-        result = await response.json();
-      } catch (jsonError) {
-        console.error('JSON Parse Error:', jsonError);
-        throw new Error('Invalid response from server');
-      }
+      const result = await response.json();
 
       if (!result.success) {
         throw new Error(result.error || 'Analysis failed');
       }
 
-      // Create and show the results popup
+      // Show the mask and create the results popup
+      showMask();
       const resultPopup = document.createElement("div");
       resultPopup.classList.add("popup");
       resultPopup.innerHTML = `
-        <h3>Analysis Results</h3>
-        <p>${result.analysis || 'Analysis completed successfully'}</p>
-        <p>Confidence Level: ${result.confidence || 'N/A'}%</p>
-        <button id="popup-close-btn">
-          View Detailed Report in Patient Manager
-        </button>
+        <div class="popup-content">
+          <h3>Analysis Results</h3>
+          <p>${result.analysis || 'Analysis completed successfully'}</p>
+          <p>Confidence Level: ${result.confidence || 'N/A'}%</p>
+          <button id="popup-close-btn">View Detailed Report in Patient Manager</button>
+        </div>
       `;
-      
+
       document.body.appendChild(resultPopup);
       void resultPopup.offsetWidth;
       resultPopup.classList.add('show');
 
-      // Handle popup close and redirect
       document.getElementById("popup-close-btn").addEventListener("click", () => {
         resultPopup.classList.remove('show');
         setTimeout(() => {
           resultPopup.remove();
+          hideMask();
           window.location.href = "patientManager.html";
         }, 600);
       });
@@ -211,7 +200,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error('Analysis error:', error);
       alert('Analysis failed: ' + error.message);
     } finally {
-      // STOP Everything,
       analyzeBtn.classList.remove('analyzing');
       analyzeBtn.disabled = false;
       progressContainer.remove();
