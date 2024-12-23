@@ -1,8 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const appContainer = document.getElementById("app-container");
+
+  // Initially, hide the main content
+  appContainer.style.display = "none";
+  
+  const checkAuth = async () => {
+      try {
+          const response = await fetch('check-auth.php');
+          const data = await response.json();
+
+          if (!data.authenticated) {
+              console.log("User not authenticated. Redirecting to login page...");
+              alert("Unauthorized access. Please login.");
+              window.location.href = "login.html";
+          } else {
+              console.log("User authenticated:", data.user_id);
+              const userId = data.user_id; // Get the user_id from session
+              const nameParts = userId.split(" "); // Split in case it's a full name
+              const initials = nameParts.map(part => part[0].toUpperCase()).join("");
+              
+              document.querySelector(".user-name").textContent = userId; // Show user_id instead of name
+              document.querySelector(".user-avatar").textContent = initials;
+
+              // Show the main content
+              appContainer.style.display = "block";
+          }
+      } catch (error) {
+          console.error("Error during authentication check:", error);
+          alert("Unauthorized access. Please login.");
+          window.location.href = "login.html";
+      }
+  };
+
+  checkAuth();
+   
   const userDropdownBtn = document.getElementById("user-dropdown-btn");
   const userDropdownMenu = document.getElementById("user-dropdown-menu");
   const logoutLink = document.getElementById("logout-link");
-  const dashboardLogoutButton = document.getElementById("logout");
 
   // Toggle dropdown menu visibility
   userDropdownBtn.addEventListener("click", (e) => {
@@ -15,24 +49,30 @@ document.addEventListener("DOMContentLoaded", () => {
     userDropdownMenu.classList.remove("show");
   });
 
-  // Logout functionality for dropdown link
-  logoutLink.addEventListener("click", (e) => {
-    e.preventDefault();
-    localStorage.removeItem("user");
-    window.location.href = "login.html";
-  });
 
   // Logout functionality for dashboard logout button
-  if (dashboardLogoutButton) {
-    dashboardLogoutButton.addEventListener("click", () => {
+  if (logoutLink) {
+    logoutLink.addEventListener("click", () => {
       // Show confirmation dialog
       const confirmation = confirm("Are you sure you want to log out?");
       if (confirmation) {
-        // Clear user data from localStorage
-        localStorage.removeItem("user");
+        // Trigger the logout.php script to destroy the session on the server
+        fetch('logout.php')
+          .then(response => {
+            if (response.ok) {
+              // Clear user data from localStorage
+              localStorage.removeItem("user");
 
-        // Redirect to the login page
-        window.location.href = "login.html";
+              // Redirect to the login page
+              window.location.href = "login.html";
+            } else {
+              throw new Error("Logout failed on the server.");
+            }
+          })
+          .catch(error => {
+            console.error("Error during logout:", error);
+            alert("An error occurred while logging out. Please try again.");
+          });
       }
     });
   }

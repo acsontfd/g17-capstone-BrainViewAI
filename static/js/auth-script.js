@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append('userId', userId); // Ensure 'userId' matches PHP key
       formData.append('password', password);
       
-      const response = await fetch('http://127.0.0.1:5500/login_handler.php', {
+      const response = await fetch('login_handler.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
