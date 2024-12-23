@@ -50,30 +50,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // Logout functionality for dashboard logout button
-  if (logoutLink) {
-    logoutLink.addEventListener("click", () => {
-      // Show confirmation dialog
-      const confirmation = confirm("Are you sure you want to log out?");
-      if (confirmation) {
-        // Trigger the logout.php script to destroy the session on the server
-        fetch('logout.php')
-          .then(response => {
-            if (response.ok) {
-              // Clear user data from localStorage
-              localStorage.removeItem("user");
-
-              // Redirect to the login page
-              window.location.href = "login.html";
-            } else {
-              throw new Error("Logout failed on the server.");
-            }
-          })
-          .catch(error => {
-            console.error("Error during logout:", error);
-            alert("An error occurred while logging out. Please try again.");
+        // Logout functionality for dashboard logout button
+        if (logoutLink) {
+          logoutLink.addEventListener("click", () => {
+              // Show confirmation dialog
+              const confirmation = confirm("Are you sure you want to log out?");
+              if (confirmation) {
+                  // Trigger the logout.php script to destroy the session on the server
+                  fetch('logout.php')
+                  .then(response => {
+                      if (response.ok) {
+                          alert("Logout successful. Redirecting to login page...");
+                          window.location.href = "login.html";
+                      } else {
+                          alert("Error logging out. Please try again.");
+                      }
+                  })
+                  .catch(error => {
+                      console.error("Error during logout:", error);
+                      alert("Error logging out. Please try again.");
+                  });
+              }
           });
       }
-    });
-  }
 });

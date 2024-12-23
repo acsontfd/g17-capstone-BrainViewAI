@@ -33,5 +33,41 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   
         checkAuth();
-    });
+
+        // Toggle dropdown menu visibility
+        const userDropdownBtn = document.getElementById("user-dropdown-btn");
+        const userDropdownMenu = document.getElementById("user-dropdown-menu");
+        const logoutLink = document.getElementById("logout-link");
+        userDropdownBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent the click from propagating to the window
+            userDropdownMenu.classList.toggle("show");
+        });
+        window.addEventListener("click", () => {
+            userDropdownMenu.classList.remove("show");
+        });
+
+        // Logout functionality for dashboard logout button
+        if (logoutLink) {
+            logoutLink.addEventListener("click", () => {
+                // Show confirmation dialog
+                const confirmation = confirm("Are you sure you want to log out?");
+                if (confirmation) {
+                    // Trigger the logout.php script to destroy the session on the server
+                    fetch('logout.php')
+                    .then(response => {
+                        if (response.ok) {
+                            alert("Logout successful. Redirecting to login page...");
+                            window.location.href = "login.html";
+                        } else {
+                            alert("Error logging out. Please try again.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error during logout:", error);
+                        alert("Error logging out. Please try again.");
+                    });
+                }
+            });
+        }
+});
   
