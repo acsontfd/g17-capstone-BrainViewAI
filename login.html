@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainView AI - Login</title>
+  <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/loginStyles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="logo">
+        <img src="/g17-capstone-BrainViewAI-0.1-fix/assets/logo.png" alt="BrainView AI Logo">
+      </div>
+      <h2>BrainView AI</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="user-id">User ID</label>
+          <input type="text" id="userId" name="userId" placeholder="Enter your User ID" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Your Password</label>
+          <div class="password-container">
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+            <button type="button" class="toggle-password">👁️</button>
+          </div>
+        </div>
+        <div id="errorContainer" style="display: none; color: red;"></div>
+        <button type="submit" class="btn-primary">LOGIN</button>
+        <div class="links">
+          <a href="/g17-capstone-BrainViewAI-0.1-fix/forgotPassword.html">Forgot Your Password?</a>
+          <a href="/g17-capstone-BrainViewAI-0.1-fix/newAcc.html">Create Account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/g17-capstone-BrainViewAI-0.1-fix/static/js/auth-script.js"></script>
+</body>
+</html>

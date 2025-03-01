@@ -1,0 +1,55 @@
+/* Import base theme */
+@import url('mainstyles.css');
+
+.content{
+    text-align: center;
+    padding: 10px;
+}
+
+/* Button Group */
+.content .button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  margin-top: 40px;
+}
+
+.content .button-group .btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 350px;
+  text-align: center;
+}
+
+.content .button-group .btn.primary {
+  background-color: #008cff;
+  color: white;
+}
+
+.content .button-group .btn.primary:hover {
+  background-color: #005fa3;
+}
+
+.content .button-group .btn.secondary {
+  background-color: #f0f4ff;
+  color: #008cff;
+}
+
+.content .button-group .btn.secondary:hover {
+  background-color: #d7e7ff;
+}
+
+/* Responsive Adjustments for Buttons */
+@media (max-width: 768px) {
+  .content .button-group .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+

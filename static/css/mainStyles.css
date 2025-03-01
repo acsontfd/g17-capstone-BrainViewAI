@@ -1,0 +1,300 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8fbff;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #008cff;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px 50px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 1px;
+  }
+  
+  .logo span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #008cff;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links a {
+    font-size: 14px;
+    color: #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .nav-links a.active {
+    background-color: #008cff;
+    color: white;
+  }
+  
+  /* User Menu */
+  .user-menu {
+    position: relative;
+  }
+  
+  .user-menu button {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .user-avatar {
+    background-color: #008cff;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Dropdown Menu Styles */
+  .dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 12px;
+  }
+
+  .dropdown-menu.show {
+    display: block; /* Show dropdown when toggled */
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Dashboard */
+  .dashboard {
+    padding: 20px 80px;
+  }
+  
+  .ct-scan-dashboard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .ct-scan-dashboard h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .upload-analyze {
+    margin-bottom: 20px;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .btn-primary {
+    background-color: #008cff;
+    color: white;
+  }
+  
+  .btn-secondary {
+    background-color: #f0f4ff;
+    color: #008cff;
+  }
+  
+  .image-placeholder {
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    color: #888;
+    font-size: 14px;
+    text-align: center;
+    height: 350px; /* Keeps the placeholder height consistent */
+    display: flex; /* Flexbox for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    overflow: hidden; /* Ensures the image doesn't overflow */
+    background-color: #f9f9f9; /* Optional: Adds a subtle background */
+  }
+  
+  /* Ensure uploaded image fits within the placeholder */
+  .uploaded-image {
+    max-width: 100%; /* Fit image within the width of the container */
+    max-height: 100%; /* Fit image within the height of the container */
+    object-fit: contain; /* Maintain aspect ratio and avoid distortion */
+    display: block; /* Makes the image a block element */
+  }
+
+  /* Progress Bar Container */
+.progress-container {
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Progress Bar */
+.progress-bar {
+  width: 100%;
+  background-color: #f0f4ff;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 10px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.progress-bar-fill {
+  width: 0;
+  height: 100%;
+  background-color: #008cff;
+  transition: width 1.5s ease; /* Smooth animation */
+}
+
+/* Fullscreen Mask */
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 999; /* Ensure it covers everything else */
+  display: none; /* Hidden by default */
+}
+
+/* Show the mask */
+.mask.show {
+  display: block;
+}
+
+/* Analysis Text */
+.analysis-text {
+  font-size: 14px;
+  color: #555;
+}
+  
+/* Popup Styling */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 20px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.popup-content {
+  padding: 20px;
+}
+
+.popup h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.popup p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.popup button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 0 5px;
+  background-color: #008cff;
+  color: #f0f4ff;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+  /* Footer */
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #008cff;
+    padding-block: 15px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+  }

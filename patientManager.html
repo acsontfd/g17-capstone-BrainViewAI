@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainView AI - Patient Manager</title>
+  <link rel="stylesheet" href="/static/css/patientManagerStyle.css">
+</head>
+<body id="app-container">
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="/g17-capstone-BrainViewAI-0.1-fix/assets/logo.png" alt="BrainView AI Logo">
+      <span>BrainView AI</span>
+    </div>
+    <nav class="nav-links">
+      <a href="main.html">CT Scan Analyzer</a>
+      <a href="patientManager.html" class="active">Patient Manager</a>
+      <a href="settings.html">User Settings</a>
+      <a href="help.html">Help</a>
+    </nav>
+    <div class="user-menu">
+      <button id="user-dropdown-btn">
+        <span class="user-avatar">JS</span>
+        <span class="user-name">Dr. Jhone Smith</span>
+      </button>
+      <!-- Logout dropdown menu -->
+      <div class="dropdown-menu" id="user-dropdown-menu">
+        <a href="#logout" id="logout-link">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Patient Manager Dashboard -->
+  <main class="dashboard">
+    <section class="patient-manager">
+      <h1>Patient Manager</h1>
+
+      <!-- Search and Add New Patient -->
+      <div class="toolbar">
+        <input
+          type="text"
+          placeholder="Search patients by name, ID, or condition"
+          class="search-bar"
+          id="search-bar"
+        />
+        <button class="btn-primary" id="add-patient-btn">Add New Patient</button>
+      </div>
+
+      <!-- Patient Table -->
+      <div class="patient-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Patient ID</th>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Condition</th>
+              <th>Date Recorded</th>
+              <th>CT Scan</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="patient-list">
+            <!-- Dynamic rows will be inserted here -->
+            <tr>
+              <td>PT001</td>
+              <td>John Doe</td>
+              <td>45</td>
+              <td>Traumatic Brain Injury</td>
+              <td>2024-11-15</td>
+              <td>
+                <button class="btn-secondary view-ct-scan-btn">View CT Scan</button>
+              </td>
+              <td class="action-buttons">
+                <button class="btn-secondary">View</button>
+                <button class="btn-danger delete-btn">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>PT002</td>
+              <td>Jane Smith</td>
+              <td>38</td>
+              <td>Concussion</td>
+              <td>2024-11-12</td>
+              <td>
+                <button class="btn-secondary view-ct-scan-btn">View CT Scan</button>
+              </td>
+              <td class="action-buttons">
+                <button class="btn-secondary">View</button>
+                <button class="btn-danger delete-btn">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 BrainView AI. All Rights Reserved</a></p>
+  </footer>
+
+  <!-- Add Patient Modal -->
+<div id="add-patient-modal" class="popup-container">
+  <div class="popup-content">
+    <span id="close-modal-btn" class="close-btn">&times;</span>
+    <h2>Add New Patient</h2>
+    <form id="add-patient-form">
+      <label for="patient-name">Name:</label>
+      <input type="text" id="patient-name" placeholder="Enter patient's name" required />
+      
+      <label for="patient-age">Age:</label>
+      <input type="number" id="patient-age" placeholder="Enter patient's age" required />
+      
+      <label for="patient-condition">Condition:</label>
+      <input type="text" id="patient-condition" placeholder="Enter patient's condition" required />
+      
+      <button type="submit">Add Patient</button>
+    </form>
+  </div>
+</div>
+
+  <script src="/static/js/patientScripts.js"></script>
+</body>
+</html>

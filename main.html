@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrainView AI - Dashboard</title>
+  <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/mainStyles.css">
+</head>
+<body id>
+  <div id="app-container">
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="BrainView AI Logo">
+      <span>BrainView AI</span>
+    </div>
+    <nav class="nav-links">
+      <a href="main.html" class="active">CT Scan Analyzer</a>
+      <a href="patientManager.html">Patient Manager</a>
+      <a href="settings.html">User Settings</a>
+      <a href="help.html">Help</a>
+    </nav>
+    <div class="user-menu">
+      <button id="user-dropdown-btn">
+        <span class="user-avatar">JS</span>
+        <span class="user-name">Dr. Jhone Smith</span>
+      </button>
+      <!-- Dropdown Menu -->
+      <div class="dropdown-menu" id="user-dropdown-menu">
+        <a href="#logout" id="logout-link">Log Out</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CT Scan Dashboard -->
+  <main class="dashboard">
+    <section class="ct-scan-dashboard">
+      <h1>CT Scan Dashboard</h1>
+      <div class="upload-analyze">
+        <button class="btn-primary" id="upload-btn">Upload CT Scan</button>
+        <input type="file" id="upload-input" style="display: none;" accept="image/*">
+        <button class="btn-secondary" id="analyze-btn" disabled>Analyze</button>
+      </div>
+      <div class="image-placeholder" id="image-preview">
+        <p>No Image Uploaded</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 BrainView AI. All Rights Reserved</p>
+  </footer>
+</div>
+</body>
+<script src="static/js/mainScripts.js"></script>
+</html>

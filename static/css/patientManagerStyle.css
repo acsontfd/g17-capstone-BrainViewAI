@@ -1,0 +1,141 @@
+@import url(mainStyles.css);
+
+/* Global Styles */
+h1 {
+  text-align: center;
+}
+
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar {
+  width: 60%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Patient Table */
+.patient-table {
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;  
+  margin-bottom: 50px;
+}
+
+.patient-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.patient-table th,
+.patient-table td {
+  padding: 12px;
+  text-align: left;
+  background-color: #f0f8ff; /* Light blue background */
+}
+
+.patient-table th {
+  background-color: #e6f3ff; /* Slightly darker blue for header */
+  font-weight: bold;
+}
+
+.patient-table .action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.patient-table tr:hover td {
+  background-color: #e6f3ff;
+}
+
+/* Button Styles */
+.btn-danger {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #f0f4ff;
+  color: #008cff;
+}
+
+.btn-danger:hover {
+  background-color: #ff3333;
+}
+
+.btn-secondary:hover {
+  background-color: #dbe9ff;
+}
+
+/* Popup Styles */
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.popup-content h2 {
+  text-align: center;
+}
+
+.popup-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content input {
+  margin: 10px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.popup-content button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background-color: #2980b9;
+}
+
+.close-btn {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
