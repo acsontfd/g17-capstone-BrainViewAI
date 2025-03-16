@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrainView AI - Patient Manager</title>
-  <link rel="stylesheet" href="/static/css/patientManagerStyle.css">
+  <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/patientManagerStyle.css">
 </head>
 <body id="app-container">
   <!-- Top Navigation Bar -->
@@ -57,40 +57,36 @@
               <th>Age</th>
               <th>Condition</th>
               <th>Date Recorded</th>
-              <th>CT Scan</th>
+              <th>Analysis</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody id="patient-list">
             <!-- Dynamic rows will be inserted here -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+    
+    <!-- Analysis Results Section - Initially Hidden -->
+    <section id="analysis-results-section" class="analysis-results-section" style="display: none;">
+      <h2>Analysis Results for Patient: <span id="analysis-patient-name"></span></h2>
+      <button id="back-to-patients-btn" class="btn-secondary">Back to Patient List</button>
+      
+      <div class="analysis-results-table">
+        <table>
+          <thead>
             <tr>
-              <td>PT001</td>
-              <td>John Doe</td>
-              <td>45</td>
-              <td>Traumatic Brain Injury</td>
-              <td>2024-11-15</td>
-              <td>
-                <button class="btn-secondary view-ct-scan-btn">View CT Scan</button>
-              </td>
-              <td class="action-buttons">
-                <button class="btn-secondary">View</button>
-                <button class="btn-danger delete-btn">Delete</button>
-              </td>
+              <th>Date</th>
+              <th>CT Scan Name</th>
+              <th>Classification</th>
+              <th>Confidence</th>
+              <th>Accuracy</th>
+              <th>Actions</th>
             </tr>
-            <tr>
-              <td>PT002</td>
-              <td>Jane Smith</td>
-              <td>38</td>
-              <td>Concussion</td>
-              <td>2024-11-12</td>
-              <td>
-                <button class="btn-secondary view-ct-scan-btn">View CT Scan</button>
-              </td>
-              <td class="action-buttons">
-                <button class="btn-secondary">View</button>
-                <button class="btn-danger delete-btn">Delete</button>
-              </td>
-            </tr>
+          </thead>
+          <tbody id="analysis-list">
+            <!-- Dynamic rows will be inserted here -->
           </tbody>
         </table>
       </div>
@@ -103,25 +99,52 @@
   </footer>
 
   <!-- Add Patient Modal -->
-<div id="add-patient-modal" class="popup-container">
-  <div class="popup-content">
-    <span id="close-modal-btn" class="close-btn">&times;</span>
-    <h2>Add New Patient</h2>
-    <form id="add-patient-form">
-      <label for="patient-name">Name:</label>
-      <input type="text" id="patient-name" placeholder="Enter patient's name" required />
-      
-      <label for="patient-age">Age:</label>
-      <input type="number" id="patient-age" placeholder="Enter patient's age" required />
-      
-      <label for="patient-condition">Condition:</label>
-      <input type="text" id="patient-condition" placeholder="Enter patient's condition" required />
-      
-      <button type="submit">Add Patient</button>
-    </form>
+  <div id="add-patient-modal" class="popup-container">
+    <div class="popup-content">
+      <span id="close-modal-btn" class="close-btn">&times;</span>
+      <h2>Add New Patient</h2>
+      <form id="add-patient-form">
+        <label for="patient-name">Name:</label>
+        <input type="text" id="patient-name" placeholder="Enter patient's name" required />
+        
+        <label for="patient-age">Age:</label>
+        <input type="number" id="patient-age" placeholder="Enter patient's age" required />
+        
+        <label for="patient-condition">Condition:</label>
+        <input type="text" id="patient-condition" placeholder="Enter patient's condition" required />
+        
+        <button type="submit">Add Patient</button>
+      </form>
+    </div>
   </div>
-</div>
+  
+  <!-- View Analysis Modal -->
+  <div id="view-analysis-modal" class="popup-container">
+    <div class="popup-content analysis-modal-content">
+      <span id="close-analysis-modal-btn" class="close-btn">&times;</span>
+      <h2>CT Scan Analysis Details</h2>
+      <div id="analysis-details">
+        <p><strong>Patient:</strong> <span id="modal-patient-name"></span></p>
+        <p><strong>Date:</strong> <span id="modal-analysis-date"></span></p>
+        <p><strong>CT Scan:</strong> <span id="modal-scan-name"></span></p>
+        <p><strong>Classification:</strong> <span id="modal-classification"></span></p>
+        <p><strong>Confidence:</strong> <span id="modal-confidence"></span>%</p>
+        <p><strong>Accuracy:</strong> <span id="modal-accuracy"></span>%</p>
+        
+        <div class="segmentation-images">
+          <div class="segmentation-image">
+            <h4>Contour Highlighting</h4>
+            <img id="modal-contour-image" alt="Contour Segmentation" class="seg-img">
+          </div>
+          <div class="segmentation-image">
+            <h4>Edge Detection</h4>
+            <img id="modal-edge-image" alt="Edge Segmentation" class="seg-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <script src="/static/js/patientScripts.js"></script>
+  <script src="/g17-capstone-BrainViewAI-0.1-fix/static/js/patientScripts.js"></script>
 </body>
 </html>

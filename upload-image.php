@@ -52,10 +52,12 @@ try {
         throw new Exception("Execute failed: " . $stmt->error);
     }
 
+    $ctScanId = $db->conn->insert_id;
+    
     echo json_encode([
         'success'  => true,
         'message'  => 'Image uploaded successfully',
-        'image_id' => $db->conn->insert_id
+        'image_id' => $ctScanId
     ]);
 
     $stmt->close();

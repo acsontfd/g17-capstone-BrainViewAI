@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Settings - BrainView AI</title>
-  <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/settingsStyles.css">
+  <title>Help - BrainView AI</title>
+  <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/helpStyles.css">
 </head>
 <body id="app-container">
     <header class="navbar">
@@ -23,18 +23,58 @@
             <span class="user-avatar">JS</span>
             <span class="user-name">Dr. Jhone Smith</span>
           </button>
-          <!-- Dropdown Menu -->
           <div class="dropdown-menu" id="user-dropdown-menu">
             <a href="#logout" id="logout-link">Log Out</a>
           </div>
         </div>
       </header>
 
+      <main class="help-container">
+        <h1>FAQ</h1>
+        <div class="faq">
+          <div class="faq-item">
+            <button class="faq-question">How do I upload a CT scan?</button>
+            <div class="faq-answer">You can upload a CT scan by clicking on the 'Upload' button in the CT Scan Analyzer page and selecting the appropriate file.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What file formats are supported for CT scans?</button>
+            <div class="faq-answer">BrainView AI supports CT scan data in JPEG and PNG image file formats for seamless integration.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">How long does it take to analyze a CT scan?</button>
+            <div class="faq-answer">The analysis process takes approximately 2-5 minutes, depending on the complexity of the scan.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What should I do if the CT scan upload fails?</button>
+            <div class="faq-answer">Ensure that your file is in a supported format and does not exceed the size limit. Try refreshing the page and uploading again.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">How do I add or update a patient’s profile?</button>
+            <div class="faq-answer">Navigate to the 'Patient Manager' section and select 'Add New Patient' or choose an existing patient to edit details.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Can I edit my user profile details?</button>
+            <div class="faq-answer">Yes, you can edit your profile by going to 'User Settings' and updating your details.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What should I do if I forget my password?</button>
+            <div class="faq-answer">Click on the 'Forgot Password' link on the login page and follow the instructions to reset your password.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">How do I contact the admin for technical support?</button>
+            <div class="faq-answer">You can contact our support team via email at support@brainviewai.com or through the 'Help' section in the app.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Is my data secure on BrainView AI?</button>
+            <div class="faq-answer">Yes, BrainView AI implements industry-standard encryption and security protocols to ensure data safety.</div>
+          </div>
+        </div>
+      </main>
 
     <footer class="footer">
-    <p>© 2024 BrainView AI. All Rights Reserved</a></p>
-  </footer>
+      <p>© 2024 BrainView AI. All Rights Reserved</p>
+    </footer>
 
-  <script src="/static/js/help.js"></script>
+  <script src="/g17-capstone-BrainViewAI-0.1-fix/static/js/help.js"></script>
 </body>
 </html>

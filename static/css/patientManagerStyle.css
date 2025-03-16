@@ -139,3 +139,76 @@ h1 {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Analysis Results Section */
+.hidden {
+  display: none;
+}
+
+.analysis-results-section {
+  margin-top: 20px;
+}
+
+.analysis-results-section h2 {
+  margin-bottom: 15px;
+}
+
+.analysis-results-table {
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
+  margin-bottom: 50px;
+}
+
+.analysis-results-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.analysis-results-table th,
+.analysis-results-table td {
+  padding: 12px;
+  text-align: left;
+  background-color: #f0f8ff;
+}
+
+.analysis-results-table th {
+  background-color: #e6f3ff;
+  font-weight: bold;
+}
+
+/* Analysis Modal Styles */
+.analysis-modal-content {
+  width: 700px;
+  max-width: 90%;
+}
+
+.segmentation-images {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.segmentation-image {
+  width: 48%;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.segmentation-image h4 {
+  margin-bottom: 8px;
+}
+
+.seg-img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #777;
+}

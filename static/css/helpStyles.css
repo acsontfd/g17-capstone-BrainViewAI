@@ -1,1 +1,73 @@
 @import url(mainStyles.css);
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.help-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.help-container h1{
+    font-size: 24px;
+    font-weight: bold;
+    color: #0d6efd;
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.3s;
+}
+
+.faq-question:hover {
+    background: #f1f1f1;
+}
+
+/* Arrow icon */
+.faq-question::after {
+    content: '\25BC';  /* Downward arrow */
+    font-size: 14px;
+    float: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* When active, rotate arrow up */
+.faq-item.active .faq-question::after {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    display: none;
+    padding: 15px;
+    font-size: 14px;
+    color: #555;
+    background: #f9f9f9;
+    border-left: 4px solid #0d6efd;
+    border-radius: 5px;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+}
