@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const appContainer = document.getElementById("app-container");
+    const faqItems = document.querySelectorAll(".faq-item");
   
     // Initially, hide the main content
     appContainer.style.display = "none";
@@ -69,5 +70,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
+
+        // FAQ Toggle Functionality
+    faqItems.forEach((item) => {
+        const question = item.querySelector(".faq-question");
+        
+        question.addEventListener("click", () => {
+            const isOpen = item.classList.contains("active");
+
+            // Close all other FAQs
+            faqItems.forEach(faq => {
+                faq.classList.remove("active");
+                faq.querySelector(".faq-answer").style.display = "none";
+            });
+
+            // Toggle current FAQ
+            if (!isOpen) {
+                item.classList.add("active");
+                item.querySelector(".faq-answer").style.display = "block";
+            }
+        });
+    });
 });
   

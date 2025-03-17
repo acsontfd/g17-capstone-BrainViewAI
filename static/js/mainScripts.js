@@ -104,6 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
               const result = await response.json();
               if (result.success) {
+                  // Set the CT scan ID in the hidden field
+                  document.getElementById('ct-scan-id').value = result.image_id;
                   analyzeBtn.disabled = false;
               } else {
                   alert('Upload failed: ' + (result.error || 'Unknown error'));
@@ -146,11 +148,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
             await new Promise(resolve => setTimeout(resolve, 1500));
 
+            // Get patient ID from select dropdown or prompt
+            const patientSelect = document.getElementById('patient-select');
+            let patientId;
+            
+            if (patientSelect && patientSelect.value) {
+                patientId = patientSelect.value;
+            } else {
+                // If no patient select exists, prompt for patient ID
+                const patientPrompt = prompt('Please enter the patient ID (e.g., PT1):');
+                if (!patientPrompt) {
+                    throw new Error('Patient ID is required for analysis');
+                }
+                patientId = patientPrompt;
+            }
+            
+            // Get CT scan ID from data attribute or hidden field or session
+            let ctScanId;
+
+            const ctScanIdElement = document.getElementById('ct-scan-id');
+            if (ctScanIdElement) {
+                ctScanId = ctScanIdElement.value;
+            } else {
+                // If element doesn't exist, get the CT scan ID from local storage
+                // or prompt the user
+                const ctScanIdFromStorage = localStorage.getItem('last_ct_scan_id');
+                
+                if (ctScanIdFromStorage) {
+                    ctScanId = ctScanIdFromStorage;
+                } else {
+                    const ctScanIdPrompt = prompt('Please enter the CT scan ID:');
+                    if (!ctScanIdPrompt) {
+                        throw new Error('CT Scan ID is required for analysis');
+                    }
+                    ctScanId = ctScanIdPrompt;
+                }
+            }
+
+            if (!ctScanId) {
+                throw new Error('CT Scan ID not found');
+            }
+
             const imageSource = imageElement.src;
             const response = await fetch('analyze-scan.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ image: imageSource })
+                body: JSON.stringify({ 
+                    image: imageSource,
+                    ctScanId: ctScanId,
+                    patientId: patientId
+                })
             });
 
             if (!response.ok) {
@@ -164,16 +211,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(result.error || 'Analysis failed');
             }
 
-            // Show the mask and create the results popup with accuracy
+            // Show the mask and create the results popup with accuracy and segmentation images
             showMask();
             const resultPopup = document.createElement("div");
-            resultPopup.classList.add("popup");
+            resultPopup.classList.add("popup", "segmentation-popup");
             resultPopup.innerHTML = `
             <div class="popup-content">
                 <h3>Analysis Results</h3>
                 <p>Classification: ${result.analysis || 'N/A'}</p>
                 <p>Confidence Level: ${result.confidence || 'N/A'}%</p>
                 <p>Model Accuracy: ${result.accuracy || 'N/A'}%</p>
+                <p>Patient ID: ${patientId}</p>
+                
+                <div class="segmentation-images">
+                    <div class="segmentation-image">
+                        <h4>Contour Highlighting</h4>
+                        <img src="${result.contour_image}" alt="Contour Segmentation" class="seg-img">
+                    </div>
+                    <div class="segmentation-image">
+                        <h4>Edge Detection</h4>
+                        <img src="${result.edge_image}" alt="Edge Segmentation" class="seg-img">
+                    </div>
+                </div>
+                
                 <button id="popup-close-btn">View Detailed Report in Patient Manager</button>
             </div>
         `;
