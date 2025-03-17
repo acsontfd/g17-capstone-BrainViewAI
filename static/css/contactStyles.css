@@ -15,6 +15,23 @@ h1 {
   letter-spacing: 0.1px;
 }
 
+.form-input{
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+  border-color: #008cff;
+  box-shadow: 0 0 6px rgba(0, 140, 255, 0.3);
+}
+
 .contact-description {
   font-size: 17px;
   color: #000000;
@@ -40,7 +57,7 @@ h1 {
   gap: 20px;
 }
 
-.contact-form .form-group {
+.contact-form .form-group{
   display: flex;
   flex-direction: column;
   align-items: flex-start; 

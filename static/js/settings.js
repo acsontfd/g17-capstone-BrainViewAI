@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (contactAdminButton) {
     // Add event listener for click event
     contactAdminButton.addEventListener("click", () => {
-      window.location.href = "/g17-capstone-BrainViewAI-0.2-integration/contact.html"; // Redirect to help page
+      window.location.href = "/g17-capstone-BrainViewAI-0.1-fix/contact.html"; // Redirect to help page
     });
   }
 
