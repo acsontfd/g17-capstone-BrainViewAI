@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (result.success) {
         alert('Login successful! Redirecting...');
-        window.location.href = '/main.html'; // Redirect to main page
+        window.location.href = '/g17-capstone-BrainViewAI-0.1-fix/main.html'; // Redirect to main page
       } else {
         showError(result.error || 'Login failed. Please check your credentials.');
       }
