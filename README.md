@@ -1,69 +1,117 @@
 # BrainView AI
 
-BrainView AI is a web-based platform designed to assist medical professionals in classifying brain fractures in Traumatic Brain Injury (TBI) patients using **hybrid machine learning models**. The application enables users to upload CT scan images for analysis and provides insights into the necessity of surgical intervention.
+BrainView AI is a web-based platform designed for classifying brain fractures in Traumatic Brain Injury (TBI) patients using a Hybrid Machine Learning Model. The system allows medical professionals to upload CT scans for automated analysis and provides recommendations based on the Glasgow Coma Scale (GCS) and other factors.
 
 ## Features
-- **CT Scan Analyzer:** Allows users to upload and analyze brain CT scans.
-- **Patient Manager:** Manages patient data securely within the platform.
-- **User Settings:** Supports profile updates and security configurations.
-- **Flask API Integration:** Handles image processing and model inference.
-- **Fully Local Execution:** No cloud storage, ensuring data privacy.
 
-## Tech Stack
-### Frontend
-- **HTML, CSS, JavaScript** (Vanilla JS, no frameworks)
-- **Fetch API** for communicating with the backend
-
-### Backend
-- **Flask** (Python-based API for handling CT scan analysis)
-- **OpenCV & NumPy** for image processing
-- **Scikit-learn** for hybrid ML model inference
-- **SQLite** for local database storage (no cloud-based databases)
-
-## Installation
-### Prerequisites
-Ensure you have the following installed:
-- **Python 3.8+**
-- **Flask & Dependencies**
-- **SQLite** (built-in with Python)
-- **XAMPP** (for serving the frontend if required)
-
-### Backend Setup (Flask API)
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/brainview-ai.git
-   cd brainview-ai/backend
-   ```
-2. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run the Flask server:
-   ```bash
-   python app.py
-   ```
-   The API will be available at `http://127.0.0.1:5000/`
-
-### Frontend Setup
-1. Navigate to the `frontend` directory:
-   ```bash
-   cd ../frontend
-   ```
-2. Open `index.html` in a browser or use XAMPP to serve the files locally.
-
-## API Endpoints (Flask)
-| Method | Endpoint | Description |
-|--------|---------|-------------|
-| `POST` | `/upload` | Uploads and processes a CT scan image |
-| `GET` | `/results/<id>` | Retrieves analysis results for a given scan |
-
-## Contributing
-Contributions are welcome! Feel free to fork the repo and submit pull requests.
+- **CT Scan Analysis**: Upload and classify CT scans to detect brain fractures.
+- **User Management**: Manage users and roles (doctors, surgeons, medical professionals).
+- **Patient Manager**: Maintain patient records and analysis history.
+- **Interactive UI**: User-friendly interface for seamless navigation.
+- **Flask API Backend**: Handles ML model inference and data processing.
+- **Machine Learning Model**: SVM-based classification for brain fractures.
 
 ---
+
+## 1. Frontend
+
+The frontend of BrainView AI is built using HTML, CSS, and JavaScript. It provides an intuitive interface for doctors and medical professionals to:
+
+- Upload CT scan images
+- View classification results
+- Manage patient records
+- Adjust user settings
+- Contact administrators for support
+
+### Tech Stack
+- **HTML5** & **CSS3**: Structuring and styling the UI.
+- **JavaScript (Vanilla JS)**: Dynamic functionality.
+- **Bootstrap** (optional for UI components).
+- **Fetch API**: Communicates with the Flask backend.
+
+### UI Components
+- **Navigation Bar**: Provides access to core features (CT Scan Analyzer, Patient Manager, User Settings, Help).
+- **CT Scan Uploader**: Users can upload images for classification.
+- **Result Display**: Shows classification confidence and recommendations.
+- **Settings Page**: Allows customization of user preferences.
+
+---
+
+## 2. Backend (Flask API)
+
+The Flask API serves as the backend for handling image uploads, processing machine learning inferences, and managing authentication.
+
+### Setup Instructions
+
+#### Install Dependencies
+```sh
+pip install flask flask-cors numpy opencv-python scikit-learn
+```
+
+#### Run Flask Server
+```sh
+python app.py
+```
+
+### API Endpoints
+- `POST /upload` - Accepts a CT scan image and returns classification results.
+- `GET /patients` - Fetches stored patient data.
+- `POST /login` - Handles user authentication.
+
+---
+
+## 3. Machine Learning Model
+
+### Workflow
+1. **Preprocessing**: Images are resized and converted to grayscale.
+2. **Feature Extraction**: Extracts relevant features using OpenCV and NumPy.
+3. **Classification**: Uses an SVM model for fracture classification.
+4. **Inference**: Returns classification results with a confidence score.
+
+### Training the Model
+```python
+from sklearn.svm import SVC
+model = SVC(kernel='linear', probability=True)
+model.fit(X_train, y_train)
+```
+
+### Predicting on New Images
+```python
+def predict(image_path):
+    img = preprocess(image_path)
+    prediction = model.predict([img])
+    return prediction
+```
+
+---
+
+### Directory Structure
+```
+BrainViewAI/
+├── static/
+│   ├── css/
+│   │   ├── styles.css
+│   ├── js/
+│   │   ├── app.js
+├── templates/
+│   ├── index.html
+│   ├── settings.html
+├── app.py  # Flask API
+├── model.pkl  # Trained ML model
+├── README.md
+```
+
+---
+
+## Future Enhancements
+- **Improved ML Model**: Incorporate deep learning models for better accuracy.
+- **User Authentication**: Secure login with JWT authentication.
+- **Database Integration**: Store patient records using SQLite or PostgreSQL.
+
+---
+
+## Contributors
+- **Tia'a Faang Der** and team
+
+BrainView AI is an ongoing research project aimed at improving TBI diagnosis using AI.
 
