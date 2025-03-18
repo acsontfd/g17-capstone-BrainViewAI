@@ -45,6 +45,8 @@ The Flask API serves as the backend for handling image uploads, processing machi
 
 ## 3. Machine Learning Model
 
+This project incorporates hybrid maching learning model to improve overall accuracy of the detection
+
 ### Workflow
 1. **Preprocessing**: Images are resized and converted to grayscale.
 2. **Feature Extraction**: Extracts relevant features using OpenCV and NumPy.
