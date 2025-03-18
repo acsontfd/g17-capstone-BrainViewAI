@@ -41,23 +41,6 @@ The frontend of BrainView AI is built using HTML, CSS, and JavaScript. It provid
 
 The Flask API serves as the backend for handling image uploads, processing machine learning inferences, and managing authentication.
 
-### Setup Instructions
-
-#### Install Dependencies
-```sh
-pip install flask flask-cors numpy opencv-python scikit-learn
-```
-
-#### Run Flask Server
-```sh
-python app.py
-```
-
-### API Endpoints
-- `POST /upload` - Accepts a CT scan image and returns classification results.
-- `GET /patients` - Fetches stored patient data.
-- `POST /login` - Handles user authentication.
-
 ---
 
 ## 3. Machine Learning Model
@@ -67,21 +50,6 @@ python app.py
 2. **Feature Extraction**: Extracts relevant features using OpenCV and NumPy.
 3. **Classification**: Uses an SVM model for fracture classification.
 4. **Inference**: Returns classification results with a confidence score.
-
-### Training the Model
-```python
-from sklearn.svm import SVC
-model = SVC(kernel='linear', probability=True)
-model.fit(X_train, y_train)
-```
-
-### Predicting on New Images
-```python
-def predict(image_path):
-    img = preprocess(image_path)
-    prediction = model.predict([img])
-    return prediction
-```
 
 ---
 
