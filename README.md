@@ -1,6 +1,6 @@
 # BrainView AI
 
-BrainView AI is a web-based platform designed for classifying brain fractures in Traumatic Brain Injury (TBI) patients using a Hybrid Machine Learning Model. The system allows medical professionals to upload CT scans for automated analysis and provides recommendations based on the Glasgow Coma Scale (GCS) and other factors.
+BrainView AI is a web-based platform designed for classifying brain fractures in Traumatic Brain Injury (TBI) patients using a Hybrid Machine Learning Model. The system allows medical professionals to upload CT scans for automated analysis and provides recommendations for medical personnels.
 
 ## Features
 
