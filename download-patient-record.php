@@ -97,8 +97,7 @@ try {
     header('Content-Type: text/html');
     header('Content-Disposition: attachment; filename="' . $filename . '"');
     header('Cache-Control: max-age=0');
-    
-    // Generate HTML report
+
     $html = '<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -241,7 +240,7 @@ try {
     
     <div class="images-section">
         <h2>CT Scan Analysis Images</h2>
-        <p>Note: The images below are embedded as links. To view the images, you will need to be logged into the BrainView AI system.</p>
+        <p>Note: The images below are embedded as links. Due to the privacy security terms, to view the images, you will need to be logged into the BrainView AI system.</p>
         
         <div class="images-grid">
             <div class="image-container">
