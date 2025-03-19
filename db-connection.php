@@ -19,5 +19,17 @@ class Database {
     public function closeConnection() {
         $this->conn->close();
     }
+    
+    // Add method to get connection info for debugging
+    public function getConnectionInfo() {
+        return [
+            'host' => $this->host,
+            'database' => $this->dbname,
+            'connected' => ($this->conn && !$this->conn->connect_error),
+            'server_info' => $this->conn->server_info,
+            'client_info' => $this->conn->client_info,
+            'protocol_version' => $this->conn->protocol_version
+        ];
+    }
 }
 ?>

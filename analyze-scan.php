@@ -51,13 +51,17 @@ try {
     // Get the base64 image data without the data URI prefix
     $contourImage = preg_replace('/^data:image\/\w+;base64,/', '', $respData['contour_image']);
     $edgeImage = preg_replace('/^data:image\/\w+;base64,/', '', $respData['edge_image']);
+    $thresholdMaskImage = preg_replace('/^data:image\/\w+;base64,/', '', $respData['threshold_mask_image']);
+    $damageOverlayImage = preg_replace('/^data:image\/\w+;base64,/', '', $respData['damage_overlay_image']);
     
     // Decode the base64 data
     $contourImageData = base64_decode($contourImage);
     $edgeImageData = base64_decode($edgeImage);
+    $thresholdMaskImageData = base64_decode($thresholdMaskImage);
+    $damageOverlayImageData = base64_decode($damageOverlayImage);
     
     // Insert the analysis results
-    $stmt = $db->conn->prepare("INSERT INTO analysis_results (ct_scan_id, patient_id, classification, confidence, accuracy, contour_image, edge_image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = $db->conn->prepare("INSERT INTO analysis_results (ct_scan_id, patient_id, classification, confidence, accuracy, contour_image, edge_image, threshold_mask_image, damage_overlay_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     
     if (!$stmt) {
         throw new Exception("Prepare failed: " . $db->conn->error);
@@ -71,10 +75,14 @@ try {
     
     $null1 = NULL; // placeholder for bind_param for contour image
     $null2 = NULL; // placeholder for bind_param for edge image
+    $null3 = NULL; // placeholder for bind_param for threshold mask image
+    $null4 = NULL; // placeholder for bind_param for damage overlay image
     
-    $stmt->bind_param("issddbb", $ctScanId, $patientId, $classification, $confidence, $accuracy, $null1, $null2);
+    $stmt->bind_param("issddbbbb", $ctScanId, $patientId, $classification, $confidence, $accuracy, $null1, $null2, $null3, $null4);
     $stmt->send_long_data(5, $contourImageData);
     $stmt->send_long_data(6, $edgeImageData);
+    $stmt->send_long_data(7, $thresholdMaskImageData);
+    $stmt->send_long_data(8, $damageOverlayImageData);
     
     if (!$stmt->execute()) {
         throw new Exception("Execute failed: " . $stmt->error);
@@ -92,7 +100,9 @@ try {
         'confidence'    => $respData['confidence'],
         'accuracy'      => $respData['accuracy'],
         'contour_image' => $respData['contour_image'],
-        'edge_image'    => $respData['edge_image']
+        'edge_image'    => $respData['edge_image'],
+        'threshold_mask_image' => $respData['threshold_mask_image'],
+        'damage_overlay_image' => $respData['damage_overlay_image']
     ]);
 
 } catch (Exception $e) {

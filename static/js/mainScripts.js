@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
               // If you have a real user name, replace this with the actual name
               document.querySelector(".user-name").textContent = userId;
               document.querySelector(".user-avatar").textContent = initials;
-
-              // Show the main content
               appContainer.style.display = "block";
           }
       } catch (error) {
@@ -147,8 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             await new Promise(resolve => setTimeout(resolve, 1500));
-
-            // Get patient ID from select dropdown or prompt
             const patientSelect = document.getElementById('patient-select');
             let patientId;
             
@@ -162,16 +158,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 patientId = patientPrompt;
             }
-            
-            // Get CT scan ID from data attribute or hidden field or session
+
             let ctScanId;
 
             const ctScanIdElement = document.getElementById('ct-scan-id');
             if (ctScanIdElement) {
                 ctScanId = ctScanIdElement.value;
             } else {
-                // If element doesn't exist, get the CT scan ID from local storage
-                // or prompt the user
                 const ctScanIdFromStorage = localStorage.getItem('last_ct_scan_id');
                 
                 if (ctScanIdFromStorage) {
@@ -211,7 +204,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 throw new Error(result.error || 'Analysis failed');
             }
 
-            // Show the mask and create the results popup with accuracy and segmentation images
             showMask();
             const resultPopup = document.createElement("div");
             resultPopup.classList.add("popup", "segmentation-popup");
@@ -231,6 +223,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="segmentation-image">
                         <h4>Edge Detection</h4>
                         <img src="${result.edge_image}" alt="Edge Segmentation" class="seg-img">
+                    </div>
+                    <div class="segmentation-image">
+                        <h4>Threshold Mask</h4>
+                        <img src="${result.threshold_mask_image}" alt="Threshold Mask" class="seg-img">
+                    </div>
+                    <div class="segmentation-image">
+                        <h4>Damage Area Overlay</h4>
+                        <img src="${result.damage_overlay_image}" alt="Damage Overlay" class="seg-img">
                     </div>
                 </div>
                 

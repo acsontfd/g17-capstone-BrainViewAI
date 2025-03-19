@@ -301,26 +301,40 @@ body {
 
 /* Popup Styling for Segmentation */
 .segmentation-popup {
-  width: 700px;
-  max-width: 90%;
+  width: 800px;
+  max-width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .segmentation-images {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
 }
 
 .segmentation-image {
-  flex: 1;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .segmentation-image h4 {
   font-size: 16px;
   color: #333;
   margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
 }
 
 .seg-img {
@@ -328,4 +342,6 @@ body {
   height: auto;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto;
 }
