@@ -76,7 +76,7 @@ BrainViewAI/
 - **Improved ML Model**: Incorporate deep learning models for better accuracy.
 - **User Authentication**: Secure login with JWT authentication.
 - **Database Integration**: Store patient records using SQLite or PostgreSQL.
-- **Server Integration**: Deployment of the webapp in to real world server.
+- **Server Integration**: Deployment of the webapp into real world server.
 
 ---
 
