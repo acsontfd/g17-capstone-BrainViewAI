@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td class="date-cell">${formattedDate}</td>
                 <td class="action-cell">
                     <button class="view-button" data-analysis-id="${analysis.analysis_id}">View Report</button>
+                    <button class="download-button" data-analysis-id="${analysis.analysis_id}">Download</button>
                     <button class="delete-button" data-analysis-id="${analysis.analysis_id}" data-patient-id="${analysis.patient_id}">Delete</button>
                 </td>
             `;
@@ -184,6 +185,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (analysisData) {
                     showPatientModal(analysisData);
                 }
+            });
+            
+            // Add click handler for download button
+            const downloadButton = row.querySelector('.download-button');
+            downloadButton.addEventListener('click', function() {
+                const analysisId = this.getAttribute('data-analysis-id');
+                downloadPatientRecord(analysisId);
             });
             
             // Add click handler for delete button
@@ -318,6 +326,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /**
+     * Download a patient record
+     * @param {string} analysisId - The analysis ID to download
+     */
+    function downloadPatientRecord(analysisId) {
+        // Create a download link
+        const downloadUrl = `download-patient-record.php?id=${analysisId}`;
+        
+        // Open the download in a new tab/window
+        window.open(downloadUrl, '_blank');
+    }
+    
+    /**
      * Re-attach event listeners to a row's buttons after error recovery
      * @param {HTMLElement} row - The table row element
      */
@@ -331,6 +351,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (analysisData) {
                     showPatientModal(analysisData);
                 }
+            });
+        }
+        
+        // Re-attach download button event listener
+        const downloadButton = row.querySelector('.download-button');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', function() {
+                const analysisId = this.getAttribute('data-analysis-id');
+                downloadPatientRecord(analysisId);
             });
         }
         
