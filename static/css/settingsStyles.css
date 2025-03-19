@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1px;
+  gap: 10px;
   margin-top: 40px;
 }
 
@@ -25,6 +25,10 @@
   transition: background-color 0.3s ease, color 0.3s ease;
   width: 350px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .content .button-group .btn.primary {
@@ -43,6 +47,66 @@
 
 .content .button-group .btn.secondary:hover {
   background-color: #d7e7ff;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+  position: relative;
+}
+
+.theme-toggle-label {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.theme-toggle-icon {
+  position: absolute;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.moon-icon,
+.sun-icon {
+  font-size: 16px;
+  transition: opacity 0.3s ease;
+}
+
+.moon-icon {
+  opacity: 1;
+}
+
+.sun-icon {
+  opacity: 0;
+}
+
+body.dark-mode .moon-icon {
+  opacity: 0;
+}
+
+body.dark-mode .sun-icon {
+  opacity: 1;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .content .button-group .btn.primary {
+  background-color: var(--dark-accent);
+}
+
+body.dark-mode .content .button-group .btn.primary:hover {
+  background-color: #0099ff;
+}
+
+body.dark-mode .content .button-group .btn.secondary {
+  background-color: var(--dark-hover);
+  color: var(--dark-accent);
+}
+
+body.dark-mode .content .button-group .btn.secondary:hover {
+  background-color: var(--dark-surface);
 }
 
 /* Modal container */
@@ -183,6 +247,96 @@
 iframe{
   border: none;
   outline: none;
+}
+
+/* Settings Page Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8fbff;
+  color: #333;
+}
+
+/* Settings Section */
+.settings-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.settings-section h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+/* Theme Toggle Container */
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+}
+
+.theme-toggle-container label {
+  font-size: 1em;
+  color: #555;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .settings-section {
+  background: var(--dark-card);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .settings-section h2 {
+  color: var(--dark-text);
+}
+
+body.dark-mode .theme-toggle-container {
+  background-color: var(--dark-surface);
+}
+
+body.dark-mode .theme-toggle-container label {
+  color: var(--dark-text);
+}
+
+body.dark-mode .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .theme-toggle-icon {
+  color: var(--dark-text);
 }
 
 
