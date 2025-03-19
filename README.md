@@ -81,7 +81,7 @@ BrainViewAI/
 ---
 
 ## Contributors
-- **Sabrina Tang, Lee Yee Jeen, Ashley Teong, Hurrel Xu** and **Tia'a Faang Der (Author of this forked repo)**
+- **Sabrina Tang, Lee Yee Jeen, Ashley Teong, Harrel Xu** and **Tia'a Faang Der (Author of this forked repo)**
 
 BrainView AI is an ongoing research project aimed at improving TBI diagnosis using HML models.
 
