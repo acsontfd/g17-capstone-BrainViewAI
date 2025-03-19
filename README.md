@@ -25,8 +25,7 @@ The frontend of BrainView AI is built using HTML, CSS, and JavaScript. It provid
 
 ### Tech Stack
 - **HTML5** & **CSS3**: Structuring and styling the UI.
-- **JavaScript (Vanilla JS)**: Dynamic functionality.
-- **Bootstrap** (optional for UI components).
+- **JavaScript (Vanilla JS)**: Dynamic functionality and UI enhancements.
 - **Fetch API**: Communicates with the Flask backend.
 
 ### UI Components
