@@ -77,11 +77,12 @@ BrainViewAI/
 - **Improved ML Model**: Incorporate deep learning models for better accuracy.
 - **User Authentication**: Secure login with JWT authentication.
 - **Database Integration**: Store patient records using SQLite or PostgreSQL.
+- **Server Integration**: Deployment of the webapp in to real world server.
 
 ---
 
 ## Contributors
 - **Sabrina Tang, Lee Yee Jeen, Ashley Teong, Hurrel Xu** and **Tia'a Faang Der (Author of this forked repo)**
 
-BrainView AI is an ongoing research project aimed at improving TBI diagnosis using AI.
+BrainView AI is an ongoing research project aimed at improving TBI diagnosis using HML models.
 
