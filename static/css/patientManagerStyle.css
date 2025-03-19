@@ -67,7 +67,17 @@
 
 .action-cell {
   text-align: center;
-  width: 190px;
+  width: 270px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.view-button, .download-button, .delete-button {
+  padding: 6px 10px;
+  font-size: 12px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .view-button {
@@ -75,9 +85,7 @@
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 8px 15px;
   cursor: pointer;
-  font-size: 13px;
   transition: background-color 0.2s;
 }
 
@@ -90,11 +98,8 @@
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 8px 15px;
   cursor: pointer;
-  font-size: 13px;
   transition: background-color 0.2s;
-  margin-left: 5px;
 }
 
 .delete-button:hover {
@@ -238,4 +243,16 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: block;
   margin: 0 auto;
+}
+.download-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  margin-left: 0;
+}
+
+.download-button:hover {
+  background-color: #218838;
 }
