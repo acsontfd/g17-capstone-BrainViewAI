@@ -1,0 +1,177 @@
+/* Dark Mode Theme */
+:root {
+  --dark-bg: #1a1a2e;
+  --dark-surface: #16213e;
+  --dark-card: #0f3460;
+  --dark-text: #e1e1e6;
+  --dark-text-secondary: #a9a9b3;
+  --dark-accent: #00a8ff;
+  --dark-border: #2a2a40;
+  --dark-hover: #2c3655;
+}
+
+/* Dark mode body */
+body.dark-mode {
+  background-color: var(--dark-bg);
+  color: var(--dark-text);
+}
+
+/* Navbar dark mode */
+body.dark-mode .navbar {
+  background-color: var(--dark-surface);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .logo span {
+  color: var(--dark-accent);
+}
+
+body.dark-mode .nav-links a {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .nav-links a.active {
+  background-color: var(--dark-accent);
+  color: var(--dark-text);
+}
+
+body.dark-mode .user-name {
+  color: var(--dark-text);
+}
+
+/* Dropdown Menu */
+body.dark-mode .dropdown-menu {
+  background-color: var(--dark-surface);
+  border: 1px solid var(--dark-border);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .dropdown-menu a {
+  color: var(--dark-text);
+}
+
+body.dark-mode .dropdown-menu a:hover {
+  background-color: var(--dark-hover);
+}
+
+/* Dashboard */
+body.dark-mode .ct-scan-dashboard {
+  background: var(--dark-card);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .ct-scan-dashboard h1 {
+  color: var(--dark-text);
+}
+
+/* Buttons */
+body.dark-mode .btn-primary {
+  background-color: var(--dark-accent);
+  color: var(--dark-text);
+}
+
+body.dark-mode .btn-secondary {
+  background-color: var(--dark-hover);
+  color: var(--dark-accent);
+}
+
+/* Image placeholder */
+body.dark-mode .image-placeholder {
+  border: 1px dashed var(--dark-border);
+  color: var(--dark-text-secondary);
+  background-color: var(--dark-surface);
+}
+
+/* Progress bar */
+body.dark-mode .progress-bar {
+  background-color: var(--dark-hover);
+}
+
+body.dark-mode .progress-bar-fill {
+  background-color: var(--dark-accent);
+}
+
+/* Analysis text */
+body.dark-mode .analysis-text {
+  color: var(--dark-text-secondary);
+}
+
+/* Popup */
+body.dark-mode .popup {
+  background-color: var(--dark-surface);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .popup h3 {
+  color: var(--dark-text);
+}
+
+body.dark-mode .popup p {
+  color: var(--dark-text-secondary);
+}
+
+body.dark-mode .popup button {
+  background-color: var(--dark-accent);
+  color: var(--dark-text);
+}
+
+/* Footer */
+body.dark-mode .footer {
+  color: var(--dark-text-secondary);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #555;
+}
+
+body.dark-mode .theme-toggle-icon {
+  color: var(--dark-text);
+}
+
+.moon-icon,
+.sun-icon {
+  display: block;
+  font-size: 18px;
+}
+
+.moon-icon {
+  display: block;
+}
+
+.sun-icon {
+  display: none;
+}
+
+body.dark-mode .moon-icon {
+  display: none;
+}
+
+body.dark-mode .sun-icon {
+  display: block;
+} 

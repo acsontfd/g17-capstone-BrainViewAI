@@ -14,27 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const noResults = document.getElementById('noResults');
     const patientModal = document.getElementById('patientModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
-    const userDropdownBtn = document.getElementById('user-dropdown-btn');
-    const userDropdownMenu = document.getElementById('user-dropdown-menu');
-    const logoutLink = document.getElementById('logout-link');
-
-    userDropdownBtn.addEventListener('click', function() {
-        userDropdownMenu.classList.toggle('show');
-    });
-    
-    // Handle logout
-    logoutLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = 'logout.php';
-    });
-
-    window.addEventListener('click', function(e) {
-        if (!e.target.matches('#user-dropdown-btn') && !e.target.parentNode.matches('#user-dropdown-btn')) {
-            if (userDropdownMenu.classList.contains('show')) {
-                userDropdownMenu.classList.remove('show');
-            }
-        }
-    });
 
     loadPatientData();
 
