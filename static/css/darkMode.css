@@ -64,6 +64,10 @@ body.dark-mode .ct-scan-dashboard h1 {
   color: var(--dark-text);
 }
 
+body.dark-mode .patient-table td{
+  color: black;;
+}
+
 /* Buttons */
 body.dark-mode .btn-primary {
   background-color: var(--dark-accent);
