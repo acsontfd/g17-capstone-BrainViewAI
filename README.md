@@ -9,7 +9,7 @@ BrainView AI is a web-based platform designed for classifying brain fractures in
 - **Patient Manager**: Maintain patient records and analysis history.
 - **Interactive UI**: User-friendly interface for seamless navigation.
 - **Flask API Backend**: Handles ML model inference and data processing.
-- **Machine Learning Model**: SVM-based classification for brain fractures.
+- **Machine Learning Model**: K-means and SVM-based classification for brain fractures.
 
 ---
 
