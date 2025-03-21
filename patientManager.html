@@ -5,146 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BrainView AI - Patient Manager</title>
   <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/patientManagerStyle.css">
+  <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/mainStyles.css">
+  <link rel="stylesheet" href="/g17-capstone-BrainViewAI-0.1-fix/static/css/darkMode.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
-<body id="app-container">
-  <!-- Top Navigation Bar -->
-  <header class="navbar">
-    <div class="logo">
-      <img src="/g17-capstone-BrainViewAI-0.1-fix/assets/logo.png" alt="BrainView AI Logo">
-      <span>BrainView AI</span>
-    </div>
-    <nav class="nav-links">
-      <a href="main.html">CT Scan Analyzer</a>
-      <a href="patientManager.html" class="active">Patient Manager</a>
-      <a href="settings.html">User Settings</a>
-      <a href="help.html">Help</a>
-    </nav>
-    <div class="user-menu">
-      <button id="user-dropdown-btn">
-        <span class="user-avatar">JS</span>
-        <span class="user-name">Dr. Jhone Smith</span>
-      </button>
-      <!-- Logout dropdown menu -->
-      <div class="dropdown-menu" id="user-dropdown-menu">
-        <a href="#logout" id="logout-link">Log Out</a>
+<body>
+  <div id="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="BrainView AI Logo">
+        <span>BrainView AI</span>
       </div>
-    </div>
-  </header>
-
-  <!-- Patient Manager Dashboard -->
-  <main class="dashboard">
-    <section class="patient-manager">
-      <h1>Patient Manager</h1>
-
-      <!-- Search and Add New Patient -->
-      <div class="toolbar">
-        <input
-          type="text"
-          placeholder="Search patients by name, ID, or condition"
-          class="search-bar"
-          id="search-bar"
-        />
-        <button class="btn-primary" id="add-patient-btn">Add New Patient</button>
+      <nav class="nav-links">
+        <a href="main.html">CT Scan Analyzer</a>
+        <a href="patientManager.html" class="active">Patient Manager</a>
+        <a href="settings.html">User Settings</a>
+        <a href="help.html">Help</a>
+      </nav>
+      <div class="user-menu">
+        <button id="user-dropdown-btn">
+          <span class="user-avatar">JS</span>
+          <span class="user-name">Dr. Jhone Smith</span>
+        </button>
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu" id="user-dropdown-menu">
+          <a href="#logout" id="logout-link">Log Out</a>
+        </div>
       </div>
+    </header>
 
-      <!-- Patient Table -->
-      <div class="patient-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Patient ID</th>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Condition</th>
-              <th>Date Recorded</th>
-              <th>Analysis</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="patient-list">
-            <!-- Dynamic rows will be inserted here -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-    
-    <!-- Analysis Results Section - Initially Hidden -->
-    <section id="analysis-results-section" class="analysis-results-section" style="display: none;">
-      <h2>Analysis Results for Patient: <span id="analysis-patient-name"></span></h2>
-      <button id="back-to-patients-btn" class="btn-secondary">Back to Patient List</button>
-      
-      <div class="analysis-results-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>CT Scan Name</th>
-              <th>Classification</th>
-              <th>Confidence</th>
-              <th>Accuracy</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="analysis-list">
-            <!-- Dynamic rows will be inserted here -->
-          </tbody>
-        </table>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2024 BrainView AI. All Rights Reserved</a></p>
-  </footer>
-
-  <!-- Add Patient Modal -->
-  <div id="add-patient-modal" class="popup-container">
-    <div class="popup-content">
-      <span id="close-modal-btn" class="close-btn">&times;</span>
-      <h2>Add New Patient</h2>
-      <form id="add-patient-form">
-        <label for="patient-name">Name:</label>
-        <input type="text" id="patient-name" placeholder="Enter patient's name" required />
+    <!-- Patient Manager Dashboard -->
+    <main class="dashboard">
+      <section class="ct-scan-dashboard">
+        <h1>Patient CT Scan Records</h1>
         
-        <label for="patient-age">Age:</label>
-        <input type="number" id="patient-age" placeholder="Enter patient's age" required />
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input type="text" id="patientSearch" class="search-input" placeholder="Search by Patient ID">
+          <button class="btn-primary" id="searchBtn">Search</button>
+          <button class="btn-secondary" id="clearBtn">Clear</button>
+        </div>
+
+        <div id="loadingIndicator" class="loading">
+          <div class="loading-spinner"></div>
+          <p>Loading patient data...</p>
+        </div>
         
-        <label for="patient-condition">Condition:</label>
-        <input type="text" id="patient-condition" placeholder="Enter patient's condition" required />
+        <!-- Patient Results Container (Table Layout) -->
+        <div id="patientResults">
+          <table class="patient-table">
+            <thead>
+              <tr>
+                <th>Patient ID</th>
+                <th>Status</th>
+                <th>Confidence</th>
+                <th>Scan Name</th>
+                <th>Analysis Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="patientTableBody">
+
+            </tbody>
+          </table>
+        </div>
         
-        <button type="submit">Add Patient</button>
-      </form>
-    </div>
+        <!-- No Results Message -->
+        <div id="noResults" class="no-results" style="display: none;">
+          <p>No patient records found. Please try a different search term.</p>
+        </div>
+        
+        <!--Developer tools section (HIDDEN DEFAULT) -->
+        <div id="developerTools" class="developer-tools">
+          <h3>Developer & Troubleshooting Tools</h3>
+          <ul>
+            <li><a href="debug-patient-data.php" target="_blank">System Diagnostic Tool</a></li>
+            <li><a href="insert-test-data.php" target="_blank">Insert Test Patient Data</a></li>
+            <li><a href="create-image-not-found.php" target="_blank">Generate Helper Images</a></li>
+            <li><a href="check-php-extensions.php" target="_blank">Check PHP Extensions</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2024 BrainView AI. All Rights Reserved</p>
+    </footer>
   </div>
   
-  <!-- View Analysis Modal -->
-  <div id="view-analysis-modal" class="popup-container">
-    <div class="popup-content analysis-modal-content">
-      <span id="close-analysis-modal-btn" class="close-btn">&times;</span>
-      <h2>CT Scan Analysis Details</h2>
-      <div id="analysis-details">
-        <p><strong>Patient:</strong> <span id="modal-patient-name"></span></p>
-        <p><strong>Date:</strong> <span id="modal-analysis-date"></span></p>
-        <p><strong>CT Scan:</strong> <span id="modal-scan-name"></span></p>
-        <p><strong>Classification:</strong> <span id="modal-classification"></span></p>
-        <p><strong>Confidence:</strong> <span id="modal-confidence"></span>%</p>
-        <p><strong>Accuracy:</strong> <span id="modal-accuracy"></span>%</p>
-        
+  <!-- Patient Details Modal (hidden by default) -->
+  <div id="patientModal" class="mask" style="display: none;">
+    <div class="popup segmentation-popup">
+      <div class="popup-content">
+        <h3 id="modalPatientId">Patient ID: </h3>
+        <p id="modalAnalysisResult"></p>
         <div class="segmentation-images">
           <div class="segmentation-image">
-            <h4>Contour Highlighting</h4>
-            <img id="modal-contour-image" alt="Contour Segmentation" class="seg-img">
+            <h4>Original CT Scan</h4>
+            <img id="modalOriginalImage" class="seg-img" src="" alt="Original CT Scan">
+          </div>
+          <div class="segmentation-image">
+            <h4>Contour Segmentation</h4>
+            <img id="modalContourImage" class="seg-img" src="" alt="Contour Segmentation">
           </div>
           <div class="segmentation-image">
             <h4>Edge Detection</h4>
-            <img id="modal-edge-image" alt="Edge Segmentation" class="seg-img">
+            <img id="modalEdgeImage" class="seg-img" src="" alt="Edge Detection">
+          </div>
+          <div class="segmentation-image">
+            <h4>Threshold Mask</h4>
+            <img id="modalThresholdMaskImage" class="seg-img" src="" alt="Threshold Mask">
+          </div>
+          <div class="segmentation-image">
+            <h4>Damage Area Overlay</h4>
+            <img id="modalDamageOverlayImage" class="seg-img" src="" alt="Damage Area Overlay">
           </div>
         </div>
+        <div class="patient-info">
+          <p><span>Confidence:</span> <span id="modalConfidence"></span></p>
+          <p><span>Accuracy:</span> <span id="modalAccuracy"></span></p>
+          <p><span>Image Name:</span> <span id="modalImageName"></span></p>
+          <p><span>Analysis Date:</span> <span id="modalAnalysisDate"></span></p>
+        </div>
+        <button id="closeModalBtn">Close</button>
       </div>
     </div>
   </div>
-
-  <script src="/g17-capstone-BrainViewAI-0.1-fix/static/js/patientScripts.js"></script>
+  
+  <script src="static/js/mainScripts.js"></script>
+  <script src="static/js/patientManager.js"></script>
+  <script src="static/js/developerTool.js"></script>
+  <script src="static/js/darkMode.js"></script>
 </body>
-</html>
+</html> 

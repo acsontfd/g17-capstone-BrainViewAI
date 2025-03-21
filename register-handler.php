@@ -64,8 +64,9 @@ try {
         sendResponse(false, '', 'User ID already exists');
     }
 
-    // Hash password
-    $hashedPassword = password_hash($password, PASSWORD_ARGON2ID);
+    // Hash password (fallback to BCRYPT if ARGON2ID is not available)
+    $algo = defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT;
+    $hashedPassword = password_hash($password, $algo);
 
     // Prepare and bind
     $stmt = $conn->prepare("INSERT INTO users (user_id, password) VALUES (?, ?)");

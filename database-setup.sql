@@ -40,6 +40,8 @@ CREATE TABLE analysis_results (
     accuracy DECIMAL(5,2) NOT NULL,
     contour_image LONGBLOB NOT NULL,
     edge_image LONGBLOB NOT NULL,
+    threshold_mask_image LONGBLOB NOT NULL,
+    damage_overlay_image LONGBLOB NOT NULL,
     analysis_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (ct_scan_id) REFERENCES ct_scans(id) ON DELETE CASCADE
 );
